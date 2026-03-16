@@ -224,7 +224,25 @@ public class Game {
 
     //TODO: US-PKM-O-8
     private static void startGymBattle() {
+        Battle trainerBattle = trainer.challengeTrainer(Game.trainer.getCurrentArea().getGymLeader());
 
+        if (trainerBattle != null && trainerBattle.getWinner().getOwner().equals(trainer)) {
+            if (trainerBattle.getEnemy().getOwner().getClass().equals(GymLeader.class)) {
+                Pokemon enemyPokemon = trainerBattle.getEnemy();
+                Trainer owner = enemyPokemon.getOwner();
+
+                GymLeader gymLeader = (GymLeader) owner;
+                gymLeader.setDefeated(true);
+                Game.awardBadge(gymLeader.getBadge().getName());
+
+                Area gymLeaderArea = trainer.getCurrentArea();
+                Area nextArea = gymLeaderArea.getNextArea();
+
+                if (nextArea != null) {
+                    nextArea.setUnlocked(true);
+                }
+            }
+        }
     }
 
     //TODO: US-PKM-O-9

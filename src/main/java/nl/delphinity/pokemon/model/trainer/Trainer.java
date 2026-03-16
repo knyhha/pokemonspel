@@ -127,7 +127,10 @@ public class Trainer {
 
     //TODO: US-PKM-O-8
     public Battle challengeTrainer(Trainer opponent) {
-        return null;
+        Battle battle = new Battle(getActivePokemon(), opponent.activePokemon, this);
+        battle.start();
+
+        return battle;
     }
 
     //TODO: US-PKM-O-11
