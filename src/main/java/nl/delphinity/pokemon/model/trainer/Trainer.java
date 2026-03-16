@@ -82,6 +82,23 @@ public class Trainer {
 
     //TODO: US-PKM-O-7
     private boolean catchPokemon(Pokemon pokemon) {
+        if (pokemon.getOwner() != null) {
+            return false;
+        }
+
+        int catchChance = r.nextInt(100);
+
+        if (catchChance > 50) {
+            pokemonCollection.add(pokemon);
+            pokemon.setOwner(this);
+
+            if (activePokemon == null) {
+                this.setActivePokemon(pokemon);
+            }
+
+            return true;
+        }
+
         return false;
     }
 
