@@ -194,6 +194,9 @@ public class Trainer {
 
     //TODO: US-PKM-O-12
     public void visitPokeCenter(Pokecenter pokecenter) {
-
+        if (pokecenter != null) {
+            ArrayList<Pokemon> pokemonToHeal = getPokemonCollection();
+            pokecenter.healPokemon(pokemonToHeal);
+        }
     }
 }
