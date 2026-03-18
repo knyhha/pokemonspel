@@ -226,7 +226,7 @@ public class Game {
     private static void startGymBattle() {
         Battle trainerBattle = trainer.challengeTrainer(Game.trainer.getCurrentArea().getGymLeader());
 
-        if (trainerBattle != null && trainerBattle.getWinner().getOwner().equals(trainer)) {
+        if (trainerBattle != null && trainerBattle                              .getWinner().getOwner().equals(trainer)) {
             if (trainerBattle.getEnemy().getOwner().getClass().equals(GymLeader.class)) {
                 Pokemon enemyPokemon = trainerBattle.getEnemy();
                 Trainer owner = enemyPokemon.getOwner();
@@ -247,7 +247,8 @@ public class Game {
 
     //TODO: US-PKM-O-9
     public static void awardBadge(String badgeName) {
-
+        Badge newBadge = new Badge(badgeName);
+        trainer.addBadge(newBadge);
     }
 
     public static void gameOver(String message) {

@@ -127,7 +127,7 @@ public class Trainer {
 
     //TODO: US-PKM-O-8
     public Battle challengeTrainer(Trainer opponent) {
-        Battle battle = new Battle(getActivePokemon(), opponent.activePokemon, this);
+        Battle battle = battle(getActivePokemon(), opponent.activePokemon);
         battle.start();
 
         return battle;
@@ -172,10 +172,12 @@ public class Trainer {
 
     //TODO: US-PKM-O-10
     public void showBadges() {
+        System.out.println(badges.size() > 0 ? "My badges: " + badges : "You don't have any badges");
     }
 
     //TODO: US-PKM-O-9
     public void addBadge(Badge newBadge) {
+        badges.add(newBadge);
     }
 
     //TODO: US-PKM-O-5:
