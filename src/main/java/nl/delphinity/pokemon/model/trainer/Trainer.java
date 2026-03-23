@@ -126,16 +126,26 @@ public class Trainer {
     }
 
     //TODO: US-PKM-O-8
+//    public Battle challengeTrainer(Trainer opponent) {
+//        Battle battle = battle(getActivePokemon(), opponent.activePokemon);
+//        battle.start();
+//
+//        return battle;
+//    }
     public Battle challengeTrainer(Trainer opponent) {
         Battle battle = battle(getActivePokemon(), opponent.activePokemon);
         battle.start();
-
         return battle;
     }
 
+
     //TODO: US-PKM-O-11
     public void travel(Area area) {
-
+        if (area != null && area.isUnlocked()) {
+            setCurrentArea(area);
+        } else {
+            System.out.println("Area not available");
+        }
     }
 
     //TODO: US-PKM-O-3
@@ -154,7 +164,6 @@ public class Trainer {
  
             if (findChance > 80) {
                 Pokemon foundPokemon = currentArea.getRandomPokemonFromArea(activePokemon.getLevel());
-                System.out.println("trainer: " + activePokemon);
                 return foundPokemon;
             } else {
                 try {
@@ -172,7 +181,15 @@ public class Trainer {
 
     //TODO: US-PKM-O-10
     public void showBadges() {
-        System.out.println(badges.size() > 0 ? "My badges: " + badges : "You don't have any badges");
+        if (badges.size() == 0) {
+            System.out.println("You don't have any badges");
+            return;
+        }
+
+        System.out.println("My badges:");
+        for (Badge b : badges) {
+            System.out.println(b.getName());
+        }
     }
 
     //TODO: US-PKM-O-9

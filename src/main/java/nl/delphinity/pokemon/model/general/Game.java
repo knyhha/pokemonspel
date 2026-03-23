@@ -226,7 +226,7 @@ public class Game {
     private static void startGymBattle() {
         Battle trainerBattle = trainer.challengeTrainer(Game.trainer.getCurrentArea().getGymLeader());
 
-        if (trainerBattle != null && trainerBattle                              .getWinner().getOwner().equals(trainer)) {
+        if (trainerBattle != null && trainerBattle.getWinner().getOwner().equals(trainer)) {
             if (trainerBattle.getEnemy().getOwner().getClass().equals(GymLeader.class)) {
                 Pokemon enemyPokemon = trainerBattle.getEnemy();
                 Trainer owner = enemyPokemon.getOwner();
