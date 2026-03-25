@@ -8,6 +8,7 @@ import nl.delphinity.pokemon.model.trainer.Badge;
 import nl.delphinity.pokemon.model.trainer.GymLeader;
 import nl.delphinity.pokemon.model.trainer.Trainer;
 
+import java.io.*;
 import java.util.*;
 
 public class Game {
@@ -71,10 +72,6 @@ public class Game {
         
         firstPokemon.setOwner(trainer);
         trainer.getPokemonCollection().add(firstPokemon);
-//        firstPokemon.status();
-        
-        
-        
         System.out.println("You now have " + trainer.getPokemonCollection().size() + " pokemon in your collection!");
 
         //game loop
@@ -93,6 +90,8 @@ public class Game {
         System.out.println("6 ) Travel");
         System.out.println("7 ) Visit Pokecenter");
         System.out.println("8 ) Exit game");
+        System.out.println("9 ) Save pokemon set");
+        System.out.println("10 ) Load pokemon set");
         int action = sc.nextInt();
         switch (action) {
             case 1:
@@ -128,6 +127,33 @@ public class Game {
                 break;
             case 8:
                 quit();
+                break;
+            case 9:
+                ArrayList<Pokemon> pokemonCollection = trainer.getPokemonCollection();
+
+                SavedGame savedGame = new SavedGame(pokemonCollection);
+
+                try (FileOutputStream outputStream = new FileOutputStream("pokemons.ser")) {
+                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+
+                    objectOutputStream.writeObject(savedGame);
+                } catch (IOException e) {
+                    System.out.println("An error occurred: " + e.getMessage());
+                }
+
+                break;
+            case 10:
+                try( FileInputStream fileInputStream = new FileInputStream("pokemons.ser")) {
+                    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+                    savedGame = (SavedGame) objectInputStream.readObject();
+                    trainer.setPokemonCollection(savedGame.getPokemonCollection());
+                } catch (IOException e) {
+                    System.out.println("An error occurred: " + e.getMessage());
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+
                 break;
             default:
                 System.out.println("Sorry, that's not a valid option");

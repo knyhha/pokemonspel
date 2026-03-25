@@ -5,13 +5,14 @@ import nl.delphinity.pokemon.model.general.PokemonData;
 import nl.delphinity.pokemon.model.general.PokemonType;
 import nl.delphinity.pokemon.model.trainer.GymLeader;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Area {
-
+public class Area implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final String name;
     private final Area nextArea;
     private final Random r = new Random();

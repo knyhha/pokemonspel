@@ -2,9 +2,11 @@ package nl.delphinity.pokemon.model.area;
 
 import nl.delphinity.pokemon.model.general.Pokemon;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Pokecenter {
+public class Pokecenter implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private final String name;
 

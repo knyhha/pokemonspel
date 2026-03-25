@@ -1,8 +1,10 @@
 package nl.delphinity.pokemon.model.item;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Inventory {
+public class Inventory implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     protected final HashMap<ItemType, Integer> items;
 

@@ -8,13 +8,15 @@ import nl.delphinity.pokemon.model.general.PokemonType;
 import nl.delphinity.pokemon.model.item.Inventory;
 import nl.delphinity.pokemon.model.item.ItemType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 
-public class Trainer {
+public class Trainer implements Serializable {
+    private static final  long serialVersionUID = 1L;
     private final String name;
     private final ArrayList<Pokemon> pokemonCollection = new ArrayList<>();
     private final Inventory inventory = new Inventory();
@@ -48,6 +50,11 @@ public class Trainer {
 
     public ArrayList<Pokemon> getPokemonCollection() {
         return pokemonCollection;
+    }
+
+    public void setPokemonCollection(ArrayList<Pokemon> newPokemonCollection) {
+        pokemonCollection.clear();
+        pokemonCollection.addAll(newPokemonCollection);
     }
 
     public List<Badge> getBadges() {
@@ -126,12 +133,6 @@ public class Trainer {
     }
 
     //TODO: US-PKM-O-8
-//    public Battle challengeTrainer(Trainer opponent) {
-//        Battle battle = battle(getActivePokemon(), opponent.activePokemon);
-//        battle.start();
-//
-//        return battle;
-//    }
     public Battle challengeTrainer(Trainer opponent) {
         Battle battle = battle(getActivePokemon(), opponent.activePokemon);
         battle.start();
